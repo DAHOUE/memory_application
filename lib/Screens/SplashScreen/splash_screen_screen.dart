@@ -1,28 +1,67 @@
+import 'dart:async';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:memory_project/Screens/Welcome/welcome_screen.dart';
+import 'package:memory_project/components/rounded_text.dart';
 import 'package:memory_project/constants.dart';
-import 'package:splashscreen/splashscreen.dart';
 
-class SplashScreenScreen extends StatefulWidget {
+class SplashScreenScreen extends StatefulWidget{
   @override
-  _SplashScreenScreenState createState() => new _SplashScreenScreenState();
+  State<StatefulWidget> createState() {
+    return StartState();
+  }
 }
 
-class _SplashScreenScreenState extends State<SplashScreenScreen> {
+class StartState extends State<SplashScreenScreen>{
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    startTimer();
+  }
+
+  startTimer() async{
+    var duration = Duration(seconds: 10);
+    return Timer(duration, route);
+  }
+
+  route(){
+    Navigator.pushReplacement(context, MaterialPageRoute(
+        builder: (context) => WelcomeScreen()));
+  }
   @override
   Widget build(BuildContext context) {
-    return new SplashScreen(
-      photoSize: 120,
-      seconds: 14,
-      navigateAfterSeconds: new WelcomeScreen(),
-      title: new Text(
-        'Welcome In Command device',
-        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+    return Scaffold(
+
+      body: Center(
+
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children:<Widget> [
+            TextWithStyle(text: "Welcome to COM DEVICE", fontSize: 20.0 ,
+              fontWeight: FontWeight.bold, textAlign: TextAlign.center,),
+            SizedBox(height: 10.0,),
+            Container(
+              child: Image.asset("assets/images/xdomotik-recap--reseau.jpg.pagespeed.ic.nHLO-19u5p.jpeg"),
+            ),
+            SizedBox(height: 10.0,),
+
+            Padding(padding: EdgeInsets.only(top: 20.0)),
+            Container(
+              height: 60,
+              width: 60,
+              child: CircularProgressIndicator(
+                //backgroundColor: Colors.white,
+                valueColor: new AlwaysStoppedAnimation<Color>(kPrimaryColor),
+                strokeWidth: 8,
+
+              ),
+            )
+          ],
+        ),
       ),
-      image: new Image.asset(
-          'assets/images/développement-article-borne-escamotable.jpg', fit: BoxFit.cover,),
-      backgroundColor: Colors.white,
-      loaderColor: kPrimaryColor,
     );
   }
+
 }

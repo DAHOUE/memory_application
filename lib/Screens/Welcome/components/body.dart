@@ -5,6 +5,7 @@ import 'package:memory_project/Screens/Welcome/components/background.dart';
 import 'package:memory_project/components/rounded_button.dart';
 import 'package:memory_project/constants.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:memory_project/components/rounded_text.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -16,10 +17,12 @@ class Body extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            /*Text(
               "WELCOME TO COM DEV",
               style: TextStyle(fontWeight: FontWeight.bold),
-            ),
+            ),*/
+            TextWithStyle(text: "Welcome to COM DEVICE", fontSize: size.height * 0.03 ,
+            fontWeight: FontWeight.bold, textAlign: TextAlign.center,),
             SizedBox(height: size.height * 0.05),
             SvgPicture.asset(
               "assets/icons/chat.svg",
