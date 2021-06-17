@@ -45,8 +45,7 @@ class StartState extends State<SplashScreenScreen>{
             Container(
               child: Image.asset("assets/images/xdomotik-recap--reseau.jpg.pagespeed.ic.nHLO-19u5p.jpeg"),
             ),
-            SizedBox(height: 10.0,),
-
+            SizedBox(height: 100.0,),
             Padding(padding: EdgeInsets.only(top: 20.0)),
             Container(
               height: 60,

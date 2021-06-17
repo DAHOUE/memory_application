@@ -2,12 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:memory_project/Screens/Login/login_screen.dart';
 import 'package:memory_project/Screens/Signup/signup_screen.dart';
 import 'package:memory_project/Screens/Welcome/components/background.dart';
+import 'package:memory_project/Screens/Welcome/welcome_screen.dart';
 import 'package:memory_project/components/rounded_button.dart';
 import 'package:memory_project/constants.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:memory_project/components/rounded_text.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+
+  bool isAuth = false;
+  @override
+  void initState() {
+    _checkIfLoggedIn();
+    super.initState();
+  }
+
+  void _checkIfLoggedIn() async{
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var token = localStorage.getString('token');
+    if(token != null){
+      setState(() {
+        isAuth = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -22,7 +47,7 @@ class Body extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),*/
             TextWithStyle(text: "Welcome to COM DEVICE", fontSize: size.height * 0.03 ,
-            fontWeight: FontWeight.bold, textAlign: TextAlign.center,),
+              fontWeight: FontWeight.bold, textAlign: TextAlign.center,),
             SizedBox(height: size.height * 0.05),
             SvgPicture.asset(
               "assets/icons/chat.svg",
@@ -36,7 +61,7 @@ class Body extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return LoginScreen();
+                      return (isAuth) ? WelcomeScreen() : LoginScreen();
                     },
                   ),
                 );
@@ -61,5 +86,7 @@ class Body extends StatelessWidget {
         ),
       ),
     );
+
   }
 }
+

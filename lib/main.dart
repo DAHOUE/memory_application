@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:memory_project/Screens/ListDevice/list_devices.dart';
+import 'package:memory_project/Screens/Welcome/welcome_screen.dart';
 import 'package:memory_project/constants.dart';
 
 import 'Screens/SplashScreen/splash_screen_screen.dart';
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: SplashScreenScreen(),
+      home: WelcomeScreen(),
     );
   }
 }
